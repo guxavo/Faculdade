@@ -1,0 +1,220 @@
+/* 
+    Created on : 13/03/2018, 15:47:34
+    Author     : TDamiao
+*/
+
+.bloco1{
+    background-image: url("../img/bgone.jpg");
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+    width: 100%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+ul{
+    float:right;
+    margin-right: 6em;
+    margin-top: 0em;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+    font-family: calibri;
+    font-size: 24px;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    
+    border:1px solid #bbb;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+#logo{
+    margin-top: 0,5%;
+    margin-left: 2em;
+}
+
+/*Formulario*/
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=date], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+#form {
+    color: rgb(15, 15, 15);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 120%;
+    border-radius: 5px;
+    border:1px solid #bbb;
+    padding: 20px;
+    margin-top: 9em;
+    width: 29%;
+    margin-left: 07em;
+} 
+
+.bloco2{
+    background-color: #527554;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+    width: 100%;
+    padding-top: 2em;
+    padding-bottom: 7em;
+    
+}
+#form2{
+    color: white;
+    padding: 20px;
+    margin-top: 0em;
+    width: 29%;
+    margin-left: 07em;
+    padding-top: 1em;
+}
+
+div.container4 p {
+    margin-left: 10%;
+    padding-bottom: 2%;
+    font-family: 'calibri', Times, serif;
+    font-size: 200%;
+    color: white;
+    padding-top: 3%;
+
+}
+
+div.consulta{
+    margin-top: -16em;
+    float: left;
+    margin-left: 650px;
+    height: 400px;
+    width: 40%;
+}
+
+div.pmark{
+    float: right;
+    margin-top: -28%;
+    margin-right: 5%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 280%;
+    color: white;
+    text-align: center;
+}
+
+#az {
+    width: 49.5%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#az:hover {
+    background-color: #45a049;
+}
+
+.bloco3{
+    background-color: #5a645b;
+    background-image: url("../img/bgduo.jpg");
+    padding: 12px 12px;
+    border: none;
+}
+
+.bloco24{
+    padding: 12px 12px;
+    border: none;
+}
+
+#title3{
+    margin-left: 4%;
+    padding-bottom: 1%;
+    font-family: 'calibri', Times, serif;
+    font-size: 150%;
+    color: black;
+    padding-top: 1%;
+}
+#form3{
+    color: white;
+    margin-top: 0em;
+    width: 30%;
+    margin-left: 8%;
+    padding-bottom: 40px;
+}
+
+#textomarq{
+    float: right;
+    margin-right: 80px;
+    font-family: 'calibri', Times, serif;
+    font-size: 300%;
+    color: black;
+    margin-top: -240px;
+    padding-top: 1%;
+    text-align: center;
+}
+#map {
+    height: 400px;
+    width: 100%;
+   }
+
+.rodape{
+    background-color: #45a049;
+    height: 100px;
+    padding-top: 3em;
+}
+#azddg{
+    margin-right: 29%;
+}
+#texj{
+    text-align: center;
+    font-size: 120%;
+    margin-left: 68%;
+    margin-top: 70px;
+    font-family: 'calibri', Times, serif;
+}
