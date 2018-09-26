@@ -51,5 +51,9 @@ public class Funcionario {
     public void setLogin(Boolean login) {
         this.login = login;
     }
-
+    
+    @Override
+    public String toString() {
+        return "Funcionario{" + "nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", senha=" + senha + ", login=" + login +'}';
+    }
 }

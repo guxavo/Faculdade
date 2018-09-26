@@ -8,18 +8,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <c:url var="thisURL" value="indexDashboard"/>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale = 1, shrink-to-fit=no">
         <title>CAR|ICARDO</title>
         <link rel="stylesheet" type="text/css" href="<c:url value="/resources/Dashboard/bibliotecas/bootstrap/css/bootstrap.min.css"/>">
         <link rel="stylesheet" type="text/css" href="<c:url value="/resources/Dashboard/bibliotecas/font-awesome/css/font-awesome.min.css"/>">
         <link rel="stylesheet" type="text/css" href="<c:url value="/resources/Dashboard/css/sb-admin.min.css"/>">
+        <link rel=""
     </head>
     <body class="bg-dark fixed-nav sticky-footer" id="page-top">
         <!-- Navegação !-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <a class="navbar-brand" href="indexDashboard"><img src='<c:url value="/resources/Dashboard/img/logo.fw.png"/>' alt=”CAR|ICARDO”/></a>
-            
+
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarCurso" aria-control="navbarCurso" aria-expanded="false" aria-label="Navegação Toggle">
                 <span class="navbar-toggler-icon"></span>
@@ -60,11 +62,9 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="indexDashboard">
-                            <form name="form1" action="logout" method="post">
-                                <a class="nav-link" href="login"><i class="fa fa-sign-out">Logout</i></a>
-                            </form>
-                        </a>
+                        <form name="form1" action="logout" method="post">
+                            <a class="nav-link" onclick="this.parentNode.submit();"><i class="fa fa-sign-out">Logout</i></a>
+                        </form>
                     </li>
 
                 </ul>

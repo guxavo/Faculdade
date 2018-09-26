@@ -8,6 +8,10 @@ package br.com.iniciando.controller;
 import br.com.iniciando.dao.CadastroDAO;
 import br.com.iniciando.dominio.Cadastro;
 import br.com.iniciando.dominio.Funcionario;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,114 +43,111 @@ public class IniciandoController {
         return "registro";
     }
 
-    @RequestMapping("/indexDashboard")
-    public String indexDashboard() {
-
-        return "indexDashboard";
-    }
-    
-    @RequestMapping("/tabelas")
-    public String tabelas() {
-
-        return "tabelas";
-    }
-    
-
     @RequestMapping("/recuperar")
     public String recuperar() {
 
         return "recuperar";
     }
-    
-    @RequestMapping("/logar")
-    public String logar( Funcionario funcionario, HttpSession session){
-        
-        CadastroDAO dao = new CadastroDAO();
-        Funcionario pessoa = dao.login(funcionario);
-        
-        if (pessoa.isLogin()){
-            session.setAttribute("funcionarioLogin", pessoa);
-            return "indexDashboard"; 
-        }    
-        else return "login";
-    }
-    
-    @RequestMapping("/logout")
-    public String logout( Funcionario funcionario, HttpSession session){
-        
-        funcionario.setLogin(Boolean.FALSE);
-        
-        return "login";
-    }
-    
-    @RequestMapping("/cadastroFuncionario")
-    public String cadastroFuncionario(Model model, Funcionario funcionario){
-        
-        CadastroDAO dao = new CadastroDAO();
-        
-        try {
-            dao.adicionaFuncionario(funcionario);
-            
-            model.addAttribute("retorno", funcionario.getNome());
-            
-        } catch (Exception e) {
-            System.out.println("ERRO no cadastroFuncionario do IniciandoController..: " + e.getMessage());
-        }
-        
-        return "login";
-    }
-    
-    @RequestMapping("/cadastro")
-    public String iniciando(Model model, Cadastro cadastro) {
 
-        CadastroDAO dao = new CadastroDAO();
+    @RequestMapping("/indexDashboard")
+    public String indexDashboard(HttpSession session) {
+
+        if (session.getAttribute("funcionarioLogin") != null) {
+            return "indexDashboard";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping("/tabelas")
+    public String tabelas(Model model, Cadastro cadastro, HttpSession session) {
+        if (session.getAttribute("funcionarioLogin") != null) {
+            model.addAttribute("lista", new CadastroDAO(cadastro).buscaTodos());
+            return "tabelas";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping("/logar")
+    public String logar(Funcionario funcionario, HttpSession session) {
+        funcionario = new CadastroDAO(funcionario).login();
+
+        if (funcionario.isLogin()) {
+            session.setAttribute("funcionarioLogin", funcionario);
+            return "indexDashboard";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping("/logout")
+    public String logout(Funcionario funcionario, HttpSession session) {
+        session.removeAttribute("funcionarioLogin");
+        return "login";
+    }
+
+    @RequestMapping("/cadastroFuncionario")
+    public String submit(Model model, Funcionario funcionario, String submit) {
+
         Verificador verificador = new Verificador();
 
+        String mensagem = verificador.validaNome(funcionario.getNome());
+        String mensagem1 = verificador.validaNome(funcionario.getSobrenome());
+        if (mensagem.equalsIgnoreCase("erro") || mensagem1.equalsIgnoreCase("erro")) {
+            System.out.println("Erro no nome");
+        } else if (mensagem.equalsIgnoreCase("ok")) {
+            mensagem = new CadastroDAO(funcionario).adicionaFuncionario();
+            model.addAttribute(mensagem);
+            model.addAttribute(funcionario);
+        }
+        return "login";
+    }
+
+    @RequestMapping("/cadastro")
+    public String iniciando(Model model, Cadastro cadastro, String submit) {
+        Verificador verificador = new Verificador();
         String mensagem = verificador.validaNome(cadastro.getNome());
 
         if (mensagem.equalsIgnoreCase("erro")) {
             System.out.println("Erro no nome");
         } else if (mensagem.equalsIgnoreCase("ok")) {
-            try {
-                dao.adiciona(cadastro);
+            mensagem = new CadastroDAO(cadastro).adiciona();
 
-                model.addAttribute("retorno", cadastro.getNome());
-            } catch (Exception e) {
-                System.out.println("ERRO no iniciando do IniciandoController..: " + e.getMessage());
-            }
+            model.addAttribute("mensagem", mensagem);
         }
-
         return "index";
     }
 
     @RequestMapping("/lista")
-    public String lista(Model model, @RequestParam("cpf") String cpf) {
-
-        CadastroDAO dao = new CadastroDAO();
-
-        try {
-            model.addAttribute("lista", dao.busca(cpf));
-
-        } catch (Exception e) {
-            System.out.println("ERRO na lista do IniciandoController..:" + e.getMessage());
+    public String lista(Model model, Cadastro cadastro) {
+        String mensagem;
+        
+        List<Cadastro> busca = new ArrayList<>();
+        busca = new CadastroDAO(cadastro).busca();
+        model.addAttribute("lista", busca);
+        
+        System.out.println("...:"+busca);
+        
+        if(busca.isEmpty()){
+            mensagem = "CPF não encontrado!";
+            model.addAttribute("mensagem2", mensagem);
         }
 
         return "index";
     }
-    
+
     @RequestMapping("/editarExcluir")
     public String editarExcluir(Model model, Cadastro cadastro, String submit) {
-        
-        CadastroDAO dao = new CadastroDAO();
+
+        String mensagem = "";
 
         try {
-            if(submit.compareTo("Editar")== 0){
-                System.out.println("AKI1");
-                dao.alterarLocacao(cadastro);
+            if (submit.compareTo("Editar") == 0) {
+                mensagem = new CadastroDAO(cadastro).alterarLocacao();
+            } else if (submit.compareTo("Excluir") == 0) {
+                mensagem = new CadastroDAO(cadastro).excluirDados();
             }
-            else if(submit.compareTo("Excluir")== 0){
-               dao.excluirDados(cadastro);
-            }            
 
         } catch (Exception e) {
             System.out.println("ERRO na lista do IniciandoController..:" + e.getMessage());

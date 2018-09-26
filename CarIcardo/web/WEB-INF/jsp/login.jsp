@@ -12,12 +12,11 @@
     </head>
 
     <body class="bg-dark">
-
         <div class="container">
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header"><img src='<c:url value="/resources/Dashboard/img/logob.fw.png"/>' alt=”CAR|ICARDO”/></div>
                 <div class="card-body">
-                    <form name="form1" action="logar" method="POTS">
+                    <form name="form1" action="logar" method="POST">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" name="email" id="email" 

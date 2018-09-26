@@ -23,7 +23,7 @@
                 <div class="card-header">Criar uma Conta</div>
                 <div class="card-body">
 
-                    <form name="form1" action="cadastroFuncionario" method="POTS">
+                    <form name="form1" action="cadastroFuncionario" method="POST">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">

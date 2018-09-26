@@ -10,26 +10,25 @@
         <title>Cadastro</title>
     </head>
     <body>
-        <section class="bloco1">
+        <section class="bloco1" id="bloco1">
             <div id="logo">
                 <img alt="CAR|ICARDO" align="left" src="<c:url value="resources/img/logo.png"/>"/>
             </div>
             <nav>
                 <ul>
                     <li><a href="#">Inicio</a></li>
-                    <li><a href="bloco2" class="scroll-to">Consulta</a></li>
-                    <li><a href="bloco3">Serviços</a></li>
-                    <li><a href="bloco4">Contato</a></li>
+                    <li><a href="#bloco2" class="scroll-to">Consulta</a></li>
+                    <li><a href="#bloco3">Serviços</a></li>
                     <li><a href="login">Dashboard</a></li>
                 </ul>
             </nav>
 
             <div id="form">
-                <form name="form1" action="cadastro" method="POTS">
+                <form name="form1" action="cadastro" method="POST">
                     <label for="Nome">Reserva Rápida!!</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required="">
-                    <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required="">
-                    <input type="date" id="loc" name="locacao" required="">
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required="" value="Gustavo">
+                    <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required="" value="123.456.789-10">
+                    <input type="date" id="loc" name="locacao" required="" >
                     <input type="date" id="dev" name="devolucao" required="">
                     <select id="modelo" name="carro">
                         <option value="GOLF 2.6 VII 2018">GOLF 2.6 VII 2018</option>
@@ -39,7 +38,7 @@
                     </select>
                     <div class="g-recaptcha" data-sitekey="6LekpHAUAAAAAGaWyDoO0adHahanLj-SEFWXZ7f2"></div>
                     <input type="submit" value="Reservar" name="submit" id="Reservar">
-
+                    <p class="texto">${mensagem}</p>
                 </form>
             </div>
             <div class="pmark">
@@ -47,15 +46,15 @@
             </div>
         </section>
 
-        <section class="bloco2">
+        <section class="bloco2" id="bloco2">
             <div class=container4>
                 <p>Consulte sua reserva!</p>
             </div>
             <div id="form2">
                 <form name="form2" action="lista" method="post">
-                    <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required="">         
+                    <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required="">        
                     <input type="submit" name="submit" value="Consultar">
-
+                    <p class="texto">${mensagem2}</p>
                 </form>
             </div>
 
@@ -81,7 +80,7 @@
 
             </div>
         </section>
-        <section class="bloco3">
+        <section class="bloco3" id="bloco3">
             <div id="title3">
                 <p id="title3">Simulador</p>
             </div>
@@ -134,10 +133,9 @@
         <section class="rodape">
             <nav id="azddg">
                 <ul id="kkkk">
-                    <li id="kku"><a href="#">Home</a></li>
+                    <li id="kku"><a href="#bloco1">Home</a></li>
                     <li id="kku"><a href="#bloco2" class="scroll-to">Consulta</a></li>
-                    <li id="kku"><a href="#">Serviços</a></li>
-                    <li id="kku"><a href="#">Contato</a></li>
+                    <li id="kku"><a href="#bloco3">Serviços</a></li>
                 </ul>
             </nav>
             <div id="texj">
@@ -145,6 +143,6 @@
             </div>
         </section>
 
-        <script src="./script/aletSimulacao.js"></script>
+        <script src="<c:url value="/resources/js/aletSimulacao.js"/>"></script>
     </body>
 </html>
