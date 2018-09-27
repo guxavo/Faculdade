@@ -9,8 +9,7 @@ public class Verificador {
 
     public String validaEmail(String text) {
 
-        int aux;
-        int conf = 0;
+        Character aux;
         int erro = 0;        
         String mensagem = "";
 
@@ -23,6 +22,10 @@ public class Verificador {
             for (int j = 0; j < chr.length; j++) {
                 if (text.charAt(i) == chr[j]) {
                     erro += 1;
+                }
+                
+                if(Character.isDigit(text.charAt(i))){
+                    erro +=1;
                 }
             }
         }
@@ -51,7 +54,6 @@ public class Verificador {
     public String validaNome(String text) {
 
         int aux;
-        int conf = 0;
         int erro = 0;
         String mensagem = "";
 
@@ -64,6 +66,10 @@ public class Verificador {
             for (int j = 0; j < chr.length; j++) {
                 if (text.charAt(i) == chr[j]) {
                     erro += 1;
+                }
+                
+                if(Character.isDigit(text.charAt(i))){
+                    erro +=1;
                 }
             }
         }
@@ -90,6 +96,7 @@ public class Verificador {
             mensagem = "ok";
         }
         
+        System.out.println("..:"+mensagem);
         return mensagem;
     }
 }

@@ -19,7 +19,7 @@
                     <form name="form1" action="logar" method="POST">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" 
+                            <input type="text" class="form-control" name="email" id="email" 
                                    placeholder="Digite seu Email">
                         </div>
                         <div class="form-group">

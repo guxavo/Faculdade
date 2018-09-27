@@ -123,12 +123,11 @@ public class IniciandoController {
         String mensagem = verificador.validaNome(cadastro.getNome());
 
         if (mensagem.equalsIgnoreCase("erro")) {
-            System.out.println("Erro no nome");
+            mensagem = "Campo Inválido!";
         } else if (mensagem.equalsIgnoreCase("ok")) {
-            mensagem = new CadastroDAO(cadastro).adiciona();
-
-            model.addAttribute("mensagem", mensagem);
+            mensagem = new CadastroDAO(cadastro).adiciona();            
         }
+        model.addAttribute("mensagem", mensagem);
         return "index";
     }
 
