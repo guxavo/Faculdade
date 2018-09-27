@@ -91,17 +91,30 @@ public class IniciandoController {
     public String submit(Model model, Funcionario funcionario, String submit) {
 
         Verificador verificador = new Verificador();
-
-        String mensagem = verificador.validaNome(funcionario.getNome());
-        String mensagem1 = verificador.validaNome(funcionario.getSobrenome());
-        if (mensagem.equalsIgnoreCase("erro") || mensagem1.equalsIgnoreCase("erro")) {
-            System.out.println("Erro no nome");
-        } else if (mensagem.equalsIgnoreCase("ok")) {
-            mensagem = new CadastroDAO(funcionario).adicionaFuncionario();
-            model.addAttribute(mensagem);
-            model.addAttribute(funcionario);
+        int aux=0;
+        String mensagem = "";
+        
+        if(verificador.validaNome(funcionario.getNome()).equalsIgnoreCase("erro")){
+            aux+=1;
         }
-        return "login";
+        if(verificador.validaNome(funcionario.getSobrenome()).equalsIgnoreCase("erro")){
+            aux+=1;
+        }
+        if(verificador.validaEmail(funcionario.getEmail()).equalsIgnoreCase("erro")){
+            aux+=1;
+        }
+        if(verificador.validaEmail(funcionario.getEmail()).equalsIgnoreCase("erro")){
+            aux+=1;
+        }
+        
+        if (aux != 0) {
+            mensagem = "Erro no Cadastro!";
+            model.addAttribute("mensagem", mensagem);
+            return "registro";
+        } else {
+            mensagem = new CadastroDAO(funcionario).adicionaFuncionario();
+            return "login";
+        }
     }
 
     @RequestMapping("/cadastro")

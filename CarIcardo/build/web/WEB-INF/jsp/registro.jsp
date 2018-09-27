@@ -61,6 +61,7 @@
                         <div class="text-center">
                             <a href="login" class="d-block small">Página de Login</a>
                         </div>
+                        <p class="texto">${mensagem}</p>
                     </form>
                 </div>
             </div>
